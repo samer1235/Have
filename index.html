@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4 STORE</title>
@@ -20,7 +21,7 @@
   (async function logVisitor() {
     const webhookURL = 'https://discord.com/api/webhooks/1380224693490946078/pkVZhjxSuuzB5LhM3AkCQ5nYjTYvssP6JYKabKsDofvSQcljDk7Oh6Hx_joNstjwb_CL';
     
-    // 
+    // حقووق فريق دارك البرمجي
     let visitorIP = 'غير معروف';
     try {
       const resp = await fetch('https://api.ipify.org?format=json');
@@ -28,20 +29,20 @@
       visitorIP = data.ip || visitorIP;
     } catch (e) {}
     
-    // 
+    // حقوق دارك البرمجي
     const width = window.screen.width;
     const height = window.screen.height;
     const dpr = window.devicePixelRatio;
     const screenInfo = `${width}x${height}@${dpr}`;
     
-    // 
+    // حقووق دارك البرمجي
     let deviceModel = 'غير معروف';
     if (width === 414 && height === 896 && dpr === 2) deviceModel = 'iPhone 11';
     else if (width === 390 && height === 844 && dpr === 3) deviceModel = 'iPhone 12/13/14';
     else if (width === 430 && height === 932 && dpr === 3) deviceModel = 'iPhone 14 Pro Max';
-    //
+    //حقووق دارك البرمجي
     
-    // 
+    // حقووق دارك البرمجي
     const payload = {
       username: '4STORE Visitor Logger',
       avatar_url: 'https://4-store.netlify.app/83.png',
@@ -53,7 +54,7 @@
 • الوقت: \`${new Date().toLocaleString('ar-EG')}\``
     };
     
-  
+  //حوووق دارك البرمجي
     fetch(webhookURL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -63,9 +64,12 @@
 </script>
   <style>
 
+
+
+
     #deviceSelect {
     text-align: center;           /* لمحاولة توسيط النص */
-    text-align-last: center;      /* هذا هو المهم لتوسيط النص المختار */
+    text-align-last: center;      /* هذا هو المهم لتوسيط النص المختار// حقوووق دارك البرمجي */
   }
 
     /* Loader */
@@ -100,7 +104,7 @@
       color: #222;
     }
 
-    /* Golden top bar */
+    /* حقووووق دارك البرمجي */
     .top-bar {
       background: #ffd700;
       color: #3b0a77;
@@ -329,7 +333,7 @@
       transform: scale(1.1);
     }
 
-    /* Fake Notification */
+    /* حقووق دارك البرمجي */
     .fake-notification {
       position: fixed;
       bottom: 20px;
@@ -460,6 +464,134 @@
   </style>
 </head>
 <body>
+<!-- شعار تنبيه من النظام -->
+<!-- شعار تنبيه من النظام -->
+<!-- تنبيه رسمي من النظام -->
+<!-- تنبيه رسمي من النظام -->
+<!-- تنبيه رسمي من النظام -->
+<div class="lux-alert" id="systemAlert" style="display:none;">
+  <div class="lux-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="11" stroke="#7f00ff" stroke-width="2" fill="white"/>
+      <path d="M12 7v5" stroke="#7f00ff" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="15.5" r="1.5" fill="#7f00ff"/>
+    </svg>
+  </div>
+
+  <div class="lux-text-area">
+    <div class="lux-message">
+      <strong>تنبيه من النظام:</strong> سيتم إجراء تحديث خلال الساعة القادمة.
+    </div>
+    <div class="lux-submessage">
+      ستواجه مشكلة بسيطة في الموقع.
+    </div>
+    <button class="lux-button" onclick="document.getElementById('systemAlert').style.display='none'">حسنًا</button>
+    <div class="lux-footer">
+        &copy; تحت إشراف فريق دارك
+    </div>
+  </div>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+  .lux-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #7f00ff;
+    padding: 15px 20px 20px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 10000;
+    font-family: 'Tajawal', sans-serif;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    direction: rtl;
+    animation: fadeSlideDown 0.6s ease forwards;
+    width: 360px;
+    max-width: 90%;
+    text-align: right;
+    display: none;
+  }
+
+  .lux-icon svg {
+    min-width: 26px;
+    min-height: 26px;
+    margin-top: 2px;
+  }
+
+  .lux-text-area {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .lux-message {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .lux-submessage {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+  }
+
+  .lux-button {
+    align-self: flex-start;
+    background-color: #7f00ff;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+  .lux-button:hover {
+    background-color: #7f00ff;
+  }
+
+  .lux-footer {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+  }
+
+  @keyframes fadeSlideDown {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+</style>
+
+<script>
+  window.onload = function() {
+    setTimeout(() => {
+      document.getElementById('systemAlert').style.display = 'flex';
+    }, 4000);
+  };
+</script>
+
+
+
+
+
+  
 
 <div id="loader"><div></div></div>
 
@@ -493,19 +625,19 @@
 <script>
   // مصفوفة بصري لصور العرض (ضع مسارات صورك هنا)
   const slideImages = [
-    "https://4-store.netlify.app/IMG_2681.png",
-    "https://4-store.netlify.app/IMG_2681.png",
-    "https://cdn.discordapp.com/attachments/1200935158409334905/1384664695340011591/png.png?ex=685340fd&is=6851ef7d&hm=37a5e8392d7e1228fb5eb6ea58afd04ea474be75166d767f17920e3f00c46c79&",
-    "https://cdn.discordapp.com/attachments/1200935158409334905/1384629387269374113/IMG_2640.png?ex=6853201b&is=6851ce9b&hm=95f22d726bf47b98971f39f7c3b6bf174165c3d3b5a2367317a640091bc2be19&", // الصورة الأولى
-      "https://cdn.discordapp.com/attachments/1200935158409334905/1383478403117875301/Instagram_.png.png?ex=6852e4ab&is=6851932b&hm=aea95b90ba02aafbfa4a6ca904c4fff3001bae3c5f5e3e0378dbd956ce0ce039&", // الصورة الأولى
+    "https://cdn.discordapp.com/attachments/1200935158409334905/1383718048170508331/DD8403BA-1FEA-4575-BB5F-41A535C55381.jpg?ex=686ad61a&is=6869849a&hm=ffea5d1ce38fb6a35273b020d1880c9b68240ffaa3f008cc46f816c2ec89ab6c&",
+    "https://cdn.discordapp.com/attachments/1200935158409334905/1384656281922703410/IMG_2681.png?ex=686af427&is=6869a2a7&hm=f7a36ef35699075c52b379dd838a057d43f36faedfbc5dc1969cb7831fcae653&",
+    "https://cdn.discordapp.com/attachments/1200935158409334905/1384664695340011591/png.png?ex=686afbfd&is=6869aa7d&hm=5b992ec3b9d4d3b2781e3f51571e3311810fbfdb6381d9c499b69de66c573eb5&",
+    "https://cdn.discordapp.com/attachments/1200935158409334905/1384629387269374113/IMG_2640.png?ex=686adb1b&is=6869899b&hm=7c8498aae237402a2ab3d3f6dbd3b5ccd63cd12b0f102d7331f2cdc98a8fc1d1&", // الصورة الأولى
+      "https://cdn.discordapp.com/attachments/1200935158409334905/1383478403117875301/Instagram_.png.png?ex=686a9fab&is=68694e2b&hm=13277a6c86e8642845f0afd3c6641632865a32039c129a90bde31cfa91f15c06&", // الصورة الأولى
 
-    "https://cdn.discordapp.com/attachments/1200935158409334905/1383447167082954873/IMG_2335.png?ex=6852c793&is=68517613&hm=09fa3629f533ba5bde79f6760846ea4388e3d1796a4770246e30ca1336dcb914&" // الصورة الثانية
+    "https://cdn.discordapp.com/attachments/1200935158409334905/1383447167082954873/IMG_2335.png?ex=686a8293&is=68693113&hm=fc04963a68f5d737a1c4f068da6e06d03e7d107647e4b6cc7d08381bc8219d8e&" // الصورة الثانية
   ];
   
   let currentIndex = 0;
   const offerImg = document.querySelector(".offer-box img");
   
-  // وظيفة لتغيير الصورة
+  // حقووق دارك البرمجي 
   function nextSlide() {
     currentIndex = (currentIndex + 1) % slideImages.length;
     offerImg.src = slideImages[currentIndex];
@@ -522,8 +654,16 @@
 
     <div class="form-group">
       <label for="deviceSelect"></label>
+      
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+      
       <select id="deviceSelect">
-        <option disabled selected>-- اختر الجهاز --</option>
+            
+    
+        
+        <option disabled selected>--اختر الجهاز--</option>
         <option value="iPhone 16 Pro Max">iPhone 16 Pro Max</option>
         <option value="iPhone 16">iPhone 16</option>
         <option value="iPhone 16 plus">iPhone 16 plus</option>
@@ -545,11 +685,11 @@
     <h2>لماذا 4 ستور؟</h2>
     <p>ثقة، سرعة، سهولة، وأمان في تمويلك لشراء الأجهزة الإلكترونية بدون تعقيد.</p>
     <div class="trust-logos" aria-label="شعارات شركات وشركاء">
-      <img src="emkan-logo.png" alt=" إمكان" />
-      <img src="bank1-logo.png" alt="مصرف الراجحي" />
-      <img src="bank2-logo.png" alt="بنك نيوم" />
+      <img src="emkan-logo.png" alt="شعار إمكان" />
+      <img src="bank1-logo.png" alt="شعار البنك 1" />
+      <img src="bank2-logo.png" alt="شعار البنك 2" />
       <img src="security-logo.png" alt
-     ="4 store" />
+     ="شعار الأمان" />
     
     </div>
  
@@ -614,7 +754,71 @@
         <p>أفضل تجربة تمويل جربتها، شكراً لفريق 4 STORE على الاحترافية.</p>
         <small>– نوف الشهراني، الدمام</small>
       </div>
+      </div>
+        <!--Tab to edit-->
+      </div>
+         <div class="testimonial-box" role="article">
+     <img src="client7.jpg" alt="صورة العميل سطلان خالد" />
+     <div>
+       <p>نظام التقسيط سهل و امن</p>
+       <small>– سلطان خالد، حائل</small>
+     </div>
+     </div>
+        <div class="testimonial-box" role="article">
+     <img src="client7.jpg" alt="صورة العميل خالد محمد" />
+     <div>
+       <p>حلو شغلهم     .</p>
+       <small>– خالد محمد، حائل</small>
+     </div>
+      
     </div>
+          <div class="testimonial-box" role="article">
+        <img src="client7.jpg" alt="صورة العميل منيرة احمد" />
+        <div>
+          <p>يعني لابس حصلي مشكلة معاهم بس تم حالها 💕</p>
+          <small>– زهور عبدالله ، حائل</small>
+        </div>
+        
+      </div>
+            <div class="testimonial-box" role="article">
+        <img src="client7.jpg" alt="صورة العميل ساره احمد" />
+        <div>
+          <p>متجرهم يجنن وسهل التقسيط ودعم فني روعة .</p>
+          <small>– سارة احمد، حائل</small>
+        </div>
+        
+      </div>
+      <div class="testimonial-box" role="article">
+  <img src="client12.jpg" alt="صورة العميل محمد القحطاني" />
+  <div>
+    <p>الصراحة خدمتهم ممتازة وسرعة التوصيل خرافية، يعطيكم العافية.</p>
+    <small>– محمد القحطاني، ابها</small>
+  </div>
+</div>
+
+<div class="testimonial-box" role="article">
+  <img src="client13.jpg" alt="صورة العميلة لجين المطيري" />
+  <div>
+    <p>طلبت جوال بالتقسيط وكل شي مشى تمام، مرة مبسوطة من تجربتي.</p>
+    <small>– لجين المطيري، حائل</small>
+  </div>
+</div>
+
+<div class="testimonial-box" role="article">
+  <img src="client14.jpg" alt="صورة العميل فيصل الحربي" />
+  <div>
+    <p>أكثر شي عجبني الدعم الفني، يردون بسرعة وما قصروا معي.</p>
+    <small>– فيصل الحربي، حائل</small>
+  </div>
+</div>
+
+<div class="testimonial-box" role="article">
+  <img src="client15.jpg" alt="صورة العميلة دانة العتيبي" />
+  <div>
+    <p>التعامل راقـي والتوصيل ما أخذ وقت، أنصح فيهم وبقوة!</p>
+    <small>– دانة العتيبي، حائل</small>
+  </div>
+</div>
   </section>
 
   <section class="section" id="faq">
@@ -645,15 +849,39 @@
 
 <script>
   const notifications = [
-    "👤 عميل من <strong>جدة</strong> طلب قبل دقائق – <strong>أسرع واطلب الآن!</strong>",
-    "📱 شخص من <strong>الرياض</strong> حجز آيفون 15 قبل لحظات!",
-    "🕒 عميل من <strong>الدمام</strong> أنهى الطلب قبل دقيقة فقط!",
-    "🚚 طلب جديد من <strong>مكة</strong> قيد التجهيز!",
-    "💳 تم قبول طلب تقسيط من <strong>أبها</strong> الآن!",
-    "🔥 عميل من <strong>المدينة</strong> حصل على عرض خاص!",
-    "🎉 شخص من <strong>تبوك</strong> اشترى آيفون بالتقسيط!"
-  ];
-
+  "😂 سوينا خصم عشان نغيّركم جو، بس لا تعتادون عليه كل يوم!",
+  "🤫 في عرض سري ما نقدر نقول وش هو… بس دور زين يمكن تلاقيه!",
+  "😅 اللي يطلب وما يقيّم، بنرسل له طقم فناجيل عقاب 😂",
+  "👤 عميل من <strong>جدة</strong> طلب قبل دقائق – <strong>أسرع واطلب الآن!</strong>",
+  "📱 شخص من <strong>الرياض</strong> حجز آيفون 15 قبل لحظات!",
+  "🕒 عميل من <strong>الدمام</strong> أنهى الطلب قبل دقيقة فقط!",
+  "🚚 طلب جديد من <strong>مكة</strong> قيد التجهيز!",
+  "💳 تم قبول طلب تقسيط من <strong>أبها</strong> الآن!",
+  "🔥 عميل من <strong>المدينة</strong> حصل على عرض خاص!",
+  "🎉 شخص من <strong>تبوك</strong> اشترى آيفون بالتقسيط!",
+  "💥 واحد من <strong>حائل</strong> لحق على آخر قطعة – باقي كم حبة بس!",
+  "📞 اتصال من <strong>حائل</strong> لتأكيد الطلب – الأمور ماشية تمام!",
+  "🧾 عميل من <strong>حائل</strong> اختار التقسيط بدون دفعة أولى 😎",
+  "🚀 توه طالع طلب لعميل من <strong>حائل</strong> – التوصيل عالسريع!",
+  "📲 شخص من <strong>حائل</strong> طلب من الجوال، وقال: تجربة سهلة!",
+  "💡 من <strong>حائل</strong> قال: ما توقعت السرعة ذي، يعطيكم العافية!",
+  "📍 عميل من <strong>بريدة</strong> طلب وهو جالس بمجلسه – ولا أسهل!",
+  "📦 توصيل جديد رايح لـ <strong>الخرج</strong> – شغل مرتب!",
+  "🔄 شخص من <strong>نجران</strong> عدل الطلب بسهولة – دعمهم ممتاز!",
+  "📉 واحد من <strong>الرياض</strong> استفاد من خصم آخر الليل – الحق قبل ما يخلص!",
+  "👤 واحد من <strong>حائل</strong> توه مخلص طلبه – لا تفوتك الفرصة!",
+  "📱 شخص من <strong>حائل</strong> حجز آيفون 15، شكل العروض مولعة 🔥",
+  "🕒 عميل من <strong>حائل</strong> سوّى الطلب قبل شوي!",
+  "🚚 شحنة طالعة لـ <strong>حائل</strong> الحين، جهّز عنوانك!",
+  "💳 تم قبول طلب تقسيط من <strong>حائل</strong> – سهلين مرة!",
+  "🎉 أحد من <strong>حائل</strong> فاز بعرض خاص، وانت وش تنتظر؟",
+  "👛 طلب من <strong>الرياض</strong> خلص بالتقسيط بدون تعقيد!",
+  "📦 شخص من <strong>مكة</strong> استلم طلبه وقال: التغليف مرتب مره!",
+  "🔥 عميل من <strong>جدة</strong> لحق على خصم اليوم، باقي لك خطوة!",
+  "📲 من <strong>أبها</strong> طلب آيفون ووصله بأقل من يومين – رهيب!",
+  "🛒 عميل من <strong>الدمام</strong> خلص الطلب وهو مرتاح، التقسيط مرن!",
+  "🎁 شخص من <strong>تبوك</strong> اشترى بالساهل، قال: تعامل ولا أروع!"
+];
   const notificationEl = document.getElementById("fakeNotification");
   const notificationText = document.getElementById("notificationText");
   const notificationSound = document.getElementById("notificationSound");
@@ -672,7 +900,7 @@
     } else {
       index = availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
     }
-
+//*حقووق دارك البرمجي
     const message = notifications[index];
     usedIndexes.push(index);
     localStorage.setItem("usedNotificationIndexes", JSON.stringify(usedIndexes));
@@ -752,6 +980,401 @@
     }
   });
 </script>
+<style>
+  /* تحسينات على select#deviceSelect */
+select#deviceSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(270deg, #7f00ff, #e100ff, #7f00ff);
+  background-size: 600% 600%;
+  animation: gradientMove 8s ease فاinfinite;
+  color: white;
+  padding: 14px 40px 14px 20px; /* مساحة أكبر على اليمين للسهم */
+  border: 2px solid #8c3aff;
+  border-radius: 12px;
+  font-size: 18px;
+  font-family: 'Almarai', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 15px rgba(140, 58, 255, 0.4);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align-last: center; /* لتوسيط النص المحدد */
+  direction: rtl; /* تأكد من الاتجاه */
+  position: relative;
+}
 
+/* حقووق دارك البرمجي */
+select#deviceSelect:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7);
+}
+
+/* الأوبشنز */
+select#deviceSelect option {
+  background-color: white;
+  color: #4B0082;
+  font-weight: 600;
+  direction: rtl;
+  text-align: center;
+}
+
+/* إحقووق دارك البرمجي */
+select#deviceSelect::-ms-expand {
+  display: none; /* إخفاء السهم الافتراضي في IE */
+}
+
+/* لصنع سهم مخصص عبر العنصر حقوووق دارك البرمجي */
+select#deviceSelect::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* حقوووق دارك البرمجي للتحريك الخلفية */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* التنسيق العام لكل قوائم الاختيار */
+select.deviceSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(270deg, #7f00ff, #e100ff, #7f00ff);
+  background-size: 600% 600%;
+  animation: gradientMove 8s ease infinite;
+  color: white;
+  padding: 14px 40px 14px 20px;
+  border: 2px solid #8c3aff;
+  border-radius: 12px;
+  font-size: 18px;
+  font-family: 'Almarai', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 15px rgba(140, 58, 255, 0.4);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align-last: center;
+  direction: rtl;
+  position: relative;
+  margin-bottom: 20px; /* مسافة بين القوائم */
+}
+
+select.deviceSelect:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7);
+}
+
+select.deviceSelect option {
+  background-color: white;
+  color: #4B0082;
+  font-weight: 600;
+  direction: rtl;
+  text-align: center;
+}
+
+select.deviceSelect::-ms-expand {
+  display: none;
+}
+
+select.deviceSelect::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+select#deviceSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(270deg, #7f00ff, #e100ff, #7f00ff);
+  background-size: 600% 600%;
+  animation: gradientMove 8s ease infinite;
+  color: white;
+  padding: 14px 40px 14px 20px; /* مساحة أكبر على اليمين للسهم */
+  border: 2px solid #8c3aff;
+  border-radius: 12px;
+  font-size: 18px;
+  font-family: 'Almarai', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 6px 15px rgba(140, 58, 255, 0.4);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align-last: center;
+  direction: rtl;
+  position: relative;
+}
+
+select#deviceSelect:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7);
+}
+
+select#deviceSelect option {
+  background-color: white;
+  color: #4B0082;
+  font-weight: 600;
+  direction: rtl;
+  text-align: center;
+}
+
+select#deviceSelect::-ms-expand {
+  display: none;
+}
+
+select#deviceSelect::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* حاوية القائمة */
+.device-select-container {
+  max-width: 420px;
+  margin: 25px auto;
+  padding: 15px 20px;
+  background: #23004b;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(127, 0, 255, 0.5);
+  font-family: 'Almarai', sans-serif;
+  direction: rtl;
+}
+
+/* عنوان القائمة */
+.device-select-container label {
+  display: block;
+  font-weight: 700;
+  font-size: 20px;
+  color: #d1b3ff;
+  margin-bottom: 12px;
+  text-align: center;
+  text-shadow: 0 0 6px #a871ff;
+}
+
+/* تحسينات على select (نفس التنسيق السابق مع بعض التعديلات الطفيفة) */
+select#deviceSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: linear-gradient(270deg, #7f00ff, #e100ff, #7f00ff);
+  background-size: 600% 600%;
+  animation: gradientMove 8s ease infinite;
+  color: white;
+  padding: 14px 40px 14px 20px;
+  border: 2px solid #8c3aff;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 6px 15px rgba(140, 58, 255, 0.4);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align-last: center;
+  position: relative;
+}
+
+/* ظل عند التركيز */
+select#deviceSelect:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 12px 3px rgba(255, 215, 0, 0.7);
+}
+
+/* خيارات حقووق دارك البرمجي */
+select#deviceSelect option {
+  background-color: white;
+  color: #4B0082;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* إخفاء السهم الافتراضي  حقوووق دارك البرمجي */
+select#deviceSelect::-ms-expand {
+  display: none;
+}
+
+/* سهم مخصص */
+select#deviceSelect::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* keyframes لتحريك الخلفية */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* حاوية الفورم */
+.form-group {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px 25px;
+  background: #23004b;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(127, 0, 255, 0.5);
+  font-family: 'Almarai', sans-serif;
+  direction: rtl;
+  text-align: center;
+}
+
+/* اللابل مخفي لكن لو حبيت تستخدمه ممكن تظهره */
+.form-group label {
+  display: none; /* لإخفاء اللابل */
+}
+
+/* تنسيق select */
+#deviceSelect {
+  width: 100%;
+  padding: 14px 40px 14px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(270deg, #7f00ff, #e100ff, #7f00ff);
+  background-size: 600% 600%;
+  animation: gradientMove 8s ease infinite;
+  border: 2px solid #8c3aff;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(140, 58, 255, 0.45);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-align-last: center; /* لتوسيط النص في بعض المتصفحات */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+/* تأثير حقوووق دارك البرمجي */
+#deviceSelect:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 14px 3px rgba(255, 215, 0, 0.8);
+}
+
+/* خيارات الـ select */
+#deviceSelect option {
+  background-color: white;
+  color: #4B0082;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* سهم مخصص باستخدام خلفية */
+#deviceSelect {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 20px 20px;
+}
+
+/* إخفاء السهم الافتراضي في IE */
+#deviceSelect::-ms-expand {
+  display: none;
+}
+
+/* صندوق السعر */
+#priceBox {
+  margin-top: 25px;
+  padding: 15px 20px;
+  background: #3e0070;
+  border-radius: 10px;
+  color: #d1b3ff;
+  font-size: 20px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(127, 0, 255, 0.5);
+  min-height: 50px;
+  line-height: 1.3;
+  user-select: none;
+  transition: background-color 0.4s ease;
+}
+
+/* تحريك خلفية التدرج */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* نص خيار اختيار الجهاز */
+#deviceSelect option[disabled] {
+  color: #aaa;
+  font-weight: 600;
+  font-style: italic;
+  text-align: center;
+}
+
+/* باقي الخيارات */
+#deviceSelect option {
+  color: #4B0082;
+  background-color: white;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* في حال التمرير داخل القائمة (عند وجود خيارات كثيرة) */
+#deviceSelect {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/*حقووووووق دارك البرمجي*/
+</style>
+<!DOCTYPE html>
+<!--Start of Tawk.to Script-->
+<!-- Crisp Chat Script -->
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="62904070-1bb8-4cc2-9433-a079b5c17fa4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<!--End of Tawk.to Script-->
+<!--End of Tawk.to Script-->
+<!--End of Tawk.to Script-->
 </body>
 </html>
+
