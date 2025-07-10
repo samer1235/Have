@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>4 STORE - طلب خطة السنة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+  <style>
+    body {
+      font-family: 'Almarai', sans-serif;
+      background: #f9f9fb url('https://www.transparenttextures.com/patterns/symphony.png');
+      color: #222;
+      padding: 20px;
+      max-width: 400px;
+      margin: 40px auto;
+      direction: rtl;
+    }
+    h1 { color: #3b0a77; text-align: center; }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(140,58,255,0.15);
+      margin-bottom: 20px;
+    }
+    label { display: block; margin: 15px 0 5px; font-weight: 700; color: #3b0a77; }
+    input[type="text"], input[type="tel"], input[type="date"] {
+      width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd;
+      font-size: 1em; box-sizing: border-box;
+    }
+    input[type="date"] { direction: ltr; width: 60%; height: 30px; }
+    button {
+      margin-top: 25px; width: 100%; padding: 15px;
+      background: linear-gradient(90deg, #25D366, #128C7E);
+      color: white; font-weight: 700; font-size: 1.2em;
+      border: none; border-radius: 50px; cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    button:hover { box-shadow: 0 0 25px #25D366; }
+    #responseMsg, #errorMsg, #linkTrack {
+      margin-top: 20px; padding: 15px; border-radius: 10px; text-align: center; display: none;
+    }
+    #responseMsg { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    #errorMsg   { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    #linkTrack  { background: #eef9f3; color: #128C7E; border: 1px solid #c3e6cb; }
+    #linkTrack a {
+      color: #25D366; font-weight: bold; text-decoration: none; margin-left: 10px;
+    }
+    .spinner {
+      border: 5px solid #f3f3f3; border-top: 5px solid #25D366;
+      border-radius: 50%; width: 50px; height: 50px;
+      animation: spin 1s linear infinite; margin: 30px auto; display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #successAnimation { display: none; text-align: center; margin-top: 30px; }
+    .checkmark-circle {
+      margin: 0 auto; width: 100px; height: 100px; background: #3B0A77;
+      border-radius: 50%; display: flex; justify-content: center; align-items: center;
+      animation: pop 0.6s ease-out;
+    }
+    .checkmark { width: 25px; height: 12px; border-left: 4px solid #fff; border-bottom: 4px solid #fff; transform: rotate(-45deg); }
+    @keyframes pop { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .success-text {
+      margin-top: 15px; font-size: 1.3em; font-weight: bold; color: #3B0A77;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Modal confirmation style */
+    #customConfirm {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1000;
+    }
+    #customConfirm > div {
+      background:white; padding:20px; border-radius:15px; max-width:360px; margin:100px auto; text-align:center;
+    }
+    #customConfirm p {
+      font-weight:bold; font-size:1.1em; color:#3B0A77;
+    }
+    #customConfirm button {
+      margin: 10px 10px 0 10px;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1em;
+    }
+    #confirmYes { background:#3B0A77; color:white; }
+    #confirmNo { background:#ccc; color:#333; }
+  </style>
+</head>
+<body>
+
+  <h1>طلب  خطة السنة</h1>
+
+  <form id="orderForm">
+    <label for="name">الاسم:</label>
+    <input type="text" id="name" required placeholder="ادخل اسمك" />
+
+    <label for="phone">رقم الجوال:</label>
+    <input type="tel" id="phone" required pattern="05[0-9]{8}" placeholder="05xxxxxxxx" />
+
+    <label for="idNumber">رقم الهوية:</label>
+    <input type="text" id="idNumber" required pattern="[0-9]{10}" placeholder="10 أرقام" />
+
+    <label for="dob">تاريخ الميلاد:</label>
+    <input type="date" id="dob" required max="" />
+
+    <label for="device">اسم الجهاز:</label>
+    <input type="text" id="device" readonly />
+
+    <div id="deviceDetails" style="color:#3b0a77; margin-top:10px"></div>
+    <button type="submit">أرسل الطلب</button>
+  </form>
+
+  <div class="spinner" id="spinner"></div>
+
+  <div id="successAnimation">
+    <div class="checkmark-circle"><div class="checkmark"></div></div>
+    <p class="success-text">تم بنجاح ✅</p>
+  </div>
+
+  <div id="responseMsg"></div>
+  <div id="errorMsg"></div>
+
+  <div id="linkTrack">
+    رقم طلبك : <strong id="displayCode"></strong>
+    <a href="nn.html">استعلام</a>
+  </div>
+
+  <div id="customConfirm">
+    <div>
+      <p>⚠️ هل الرقم المدخل <span id="confirmPhone"></span><br>مربوط برقم الهوية <span id="confirmID"></span>؟</p>
+      <button id="confirmYes">نعم</button>
+      <button id="confirmNo">لا</button>
+    </div>
+  </div>
+
+<script>
+  const COOLDOWN_MINUTES = 1440;
+  const params = new URLSearchParams(window.location.search);
+  const selectedDevice = params.get("device") || "iPhone 16 Pro Max";
+  const cashPrice = parseInt(params.get("cash")) || 4850;
+  const installmentPrice = parseInt(params.get("installments")) || 5300;
+  const planMonths = 12;
+  const monthly = Math.ceil(installmentPrice / planMonths);
+  let visitorId = null;
+
+  document.getElementById("device").value = selectedDevice;
+  document.getElementById("deviceDetails").innerHTML = `
+    💰 السعر كاش: ${cashPrice.toLocaleString()} ريال<br>
+    💳 السعر بالتقسيط: ${installmentPrice.toLocaleString()} ريال<br>
+    📆 القسط الشهري: ${monthly.toLocaleString()} ريال × سنة (12 شهر)
+  `;
+  document.getElementById('dob').max = new Date().toISOString().split('T')[0];
+
+  let errorTimeout;
+  const showError = msg => {
+    clearTimeout(errorTimeout);
+    const errorEl = document.getElementById('errorMsg');
+    errorEl.textContent = msg;
+    errorEl.style.display = 'block';
+    ['responseMsg', 'successAnimation', 'spinner', 'linkTrack'].forEach(id => document.getElementById(id).style.display = 'none');
+    errorTimeout = setTimeout(() => {
+      errorEl.style.display = 'none';
+    }, 5000);
+  };
+  const showSuccess = (msg, code) => {
+    document.getElementById('responseMsg').textContent = msg;
+    document.getElementById('responseMsg').style.display = 'block';
+    document.getElementById('displayCode').textContent = code;
+    document.getElementById('linkTrack').style.display = 'block';
+    ['errorMsg','successAnimation','spinner'].forEach(id => document.getElementById(id).style.display = 'none');
+  }
+
+  const confirmPhoneLinked = (phone, idNumber) => {
+    return new Promise(resolve => {
+      document.getElementById('confirmPhone').textContent = phone;
+      document.getElementById('confirmID').textContent = idNumber;
+      document.getElementById('customConfirm').style.display = 'block';
+      document.getElementById('confirmYes').onclick = () => {
+        document.getElementById('customConfirm').style.display = 'none';
+        resolve(true);
+      };
+      document.getElementById('confirmNo').onclick = () => {
+        document.getElementById('customConfirm').style.display = 'none';
+        resolve(false);
+      };
+    });
+  }
+
+  FingerprintJS.load().then(fp => fp.get()).then(result => {
+    visitorId = result.visitorId;
+    const previous = JSON.parse(localStorage.getItem("orderData_" + visitorId));
+    if (previous) {
+      const diff = Date.now() - previous.timestamp;
+      if (diff < COOLDOWN_MINUTES * 60 * 1000) {
+        const minsLeft = Math.ceil((COOLDOWN_MINUTES * 60 * 1000 - diff) / 60000);
+        const h = Math.floor(minsLeft / 60), m = minsLeft % 60;
+        document.getElementById("orderForm").style.display = "none";
+        document.getElementById("responseMsg").textContent = `⚠️ لقد قمت بإرسال طلب مسبقًا. الرجاء الانتظار ${h} ساعة و${m} دقيقة.`;
+        document.getElementById("responseMsg").style.display = "block";
+        document.getElementById("displayCode").textContent = previous.code;
+        document.getElementById("linkTrack").style.display = "block";
+      } else {
+        localStorage.removeItem("orderData_" + visitorId);
+      }
+    }
+  });
+
+  document.getElementById('orderForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!visitorId) return showError("⚠️ جاري التحميل، حاول بعد لحظة.");
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const idNumber = document.getElementById('idNumber').value.trim();
+    const dob = document.getElementById('dob').value;
+    const device = document.getElementById('device').value.trim();
+
+    if (!name || !phone.match(/^05[0-9]{8}$/) || !idNumber.match(/^[0-9]{10}$/) || !dob) {
+      return showError("⚠️ يرجى تعبئة كل الحقول بشكل صحيح.");
+    }
+
+    const birthDate = new Date(dob), today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) age--;
+    if (age < 18) {
+      document.getElementById('spinner').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('spinner').style.display = 'none';
+        showError("⚠️ يجب أن يكون عمرك 18 سنة أو أكثر.");
+      }, 7000);
+      return;
+    }
+
+    const confirmed = await confirmPhoneLinked(phone, idNumber);
+    if (!confirmed) return showError("🚫 الرقم غير مربوط برقم الهوية.");
+
+    document.getElementById("spinner").style.display = 'block';
+
+    const code = Math.random().toString(36).substr(2,6).toUpperCase();
+    const timestamp = Date.now();
+
+    try {
+      const res = await fetch("https://hhs-production.up.railway.app/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, idNumber, dob, device, cashPrice, installmentPrice, monthly, code, visitorId, planMonths })
+      });
+
+      document.getElementById("spinner").style.display = 'none';
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        return showError("🚫 " + (err.message || "حدث خطأ أثناء الإرسال."));
+      }
+
+      localStorage.setItem("orderData_" + visitorId, JSON.stringify({ name, phone, code, timestamp }));
+
+      document.getElementById("orderForm").style.display = 'none';
+      document.getElementById("successAnimation").style.display = 'block';
+
+      setTimeout(() => {
+        document.getElementById("successAnimation").style.display = 'none';
+        showSuccess("✅ تم استلام الطلب، سيتم التواصل معك قريبًا.", code);
+      }, 2500);
+
+    } catch {
+      document.getElementById("spinner").style.display = 'none';
+      showError("🚫 فشل الإرسال. حاول لاحقاً.");
+    }
+  });
+</script>
+
+</body>
+</html>
