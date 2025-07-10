@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>4 STORE – خطة سنة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Almarai', sans-serif;
+      background: linear-gradient(145deg, #f9f9fb, #ece9f1);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .offer-box {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 420px;
+      margin: 50px auto;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(140, 58, 255, 0.1);
+      animation: fadeUp 0.8s ease-out;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .highlights.annual {
+      font-weight: bold;
+      color: #8c3aff;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #3B0A77;
+    }
+    select {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(270deg, #7f00ff, #e100ff, #7f00ff);
+      background-size: 600% 600%;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      animation: gradientMove 8s ease infinite;
+      text-align-last: center;
+      margin-bottom: 18px;
+    }
+    @keyframes gradientMove {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .price-box {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #4B0082;
+      line-height: 1.6;
+      font-size: 1.1em;
+    }
+    .whatsapp-button {
+      display: inline-block;
+      margin-top: 20px;
+      background: linear-gradient(90deg,#25D366,#128C7E);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-decoration: none;
+      transition: box-shadow 0.3s ease;
+    }
+    .whatsapp-button:hover {
+      box-shadow: 0 0 15px #25D366;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="offer-box">
+    <div class="highlights annual">📆 خطة التقسيط السنوي</div>
+    <div class="form-group">
+      <label for="deviceSelectYear">اختر جهازك:</label>
+      <select id="deviceSelectYear">
+        <option disabled selected>-- اختر الجهاز --</option>
+        <option value="m1">مبلغ مالي</option>
+     
+      </select>
+
+      <div id="priceAnnualBox" class="price-box"></div>
+      <a id="orderAnnualButton" class="whatsapp-button" href="#" style="display:none;">اطلب الآن – خطة السنويه</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const prices = {
+        "m1": { cash: 1, installment: 1500 },
+      
+      };
+
+      const selectYear        = document.getElementById("deviceSelectYear");
+      const priceAnnualBox    = document.getElementById("priceAnnualBox");
+      const orderAnnualButton = document.getElementById("orderAnnualButton");
+
+      selectYear.addEventListener("change", () => {
+        const device = selectYear.value;
+        const info   = prices[device];
+        if (!info) {
+          priceAnnualBox.innerHTML = "";
+          orderAnnualButton.style.display = "none";
+          return;
+        }
+
+        const months = 12;
+        const annualPayment = Math.ceil(info.installment / months);
+
+        priceAnnualBox.innerHTML = `
+          💰 <strong>السعر كاش:</strong> ${info.cash.toLocaleString()} ريال<br>
+          💳 <strong>إجمالي التقسيط:</strong> ${info.installment.toLocaleString()} ريال<br>
+          📆 <strong>القسط الشهري:</strong> ${annualPayment.toLocaleString()} ريال × 12 شهر
+        `;
+
+        orderAnnualButton.href = `nm1.html?device=${encodeURIComponent(device)}&cash=${info.cash}&installments=${info.installment}&plan=12`;
+        orderAnnualButton.style.display = "inline-block";
+      });
+    });
+  </script>
+
+</body>
+</html>
