@@ -9,42 +9,93 @@
     body {
       font-family: 'Almarai', sans-serif;
       background: #f9f9fb url('https://www.transparenttextures.com/patterns/symphony.png');
-      color: #222; padding: 20px; max-width: 400px; margin: 40px auto; direction: rtl;
+      color: #222;
+      padding: 20px;
+      max-width: 500px;
+      margin: 40px auto;
+      direction: rtl;
     }
-    h1 { color: #3b0a77; text-align: center; margin-bottom: 20px; }
-    form {
-      background: white; padding: 20px; border-radius: 15px;
-      box-shadow: 0 6px 20px rgba(140,58,255,0.15);
+    h1 {
+      color: #3b0a77;
+      text-align: center;
+      margin-bottom: 20px;
     }
-    label { display: block; margin: 15px 0 5px; font-weight: 700; color: #3b0a77; }
-    input[type="text"], input[type="tel"] {
-      width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #ddd;
-      font-size: 1em; box-sizing: border-box;
-    }
-    button {
-      margin-top: 25px; width: 100%; padding: 15px;
-      background: linear-gradient(90deg, #25D366, #128C7E);
-      color: white; font-weight: 700; font-size: 1.2em;
-      border: none; border-radius: 50px; cursor: pointer;
+    button.start-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(90deg, #8e2de2, #4a00e0);
+      color: white;
+      font-size: 1.2em;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-bottom: 30px;
       transition: box-shadow 0.3s ease;
     }
-    button:hover { box-shadow: 0 0 25px #25D366; }
-
+    button.start-btn:hover {
+      box-shadow: 0 0 20px #8e2de2;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(140,58,255,0.15);
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 700;
+      color: #3b0a77;
+    }
+    input[type="text"], input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(90deg, #25D366, #128C7E);
+      color: white;
+      font-weight: 700;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    button[type="submit"]:hover {
+      box-shadow: 0 0 25px #25D366;
+    }
     #trackResult {
-      margin-top: 20px; padding: 20px; border-radius: 10px;
-      font-weight: 700; text-align: center; display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-align: center;
+      display: none;
     }
     #trackResult.success {
-      background: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
     }
     #trackResult.error {
-      background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
     }
-
     .loader-container {
-      display: flex; flex-direction: column; align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
     .loader {
       border: 6px solid #f3f3f3;
       border-top: 6px solid #25D366;
@@ -54,29 +105,104 @@
       animation: spin 1s linear infinite;
       margin-bottom: 10px;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    footer {
-      text-align: center; margin-top: 40px;
-      color: #888; font-size: 0.9em;
-    }
-
     .success-title {
       font-size: 1.2em;
       color: #155724;
       margin-bottom: 10px;
     }
+    #progressTimeline {
+      margin-top: 30px;
+    }
+    .progress-container {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 20px 0;
+    }
+    .progress-line {
+      position: absolute;
+      top: 13px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #ddd;
+      z-index: 1;
+    }
+    #progressFill {
+      height: 100%;
+      width: 0%;
+      background-color: #25D366;
+      transition: width 0.8s ease-in-out;
+    }
+    .step {
+      width: 30px;
+      height: 30px;
+      background: #ddd;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      color: white;
+      z-index: 2;
+    }
+    .step.active {
+      background: #25D366;
+    }
+    #statusLabel {
+      text-align: center;
+      font-weight: bold;
+      color: #3b0a77;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #888;
+      font-size: 0.9em;
+    }
   </style>
 </head>
 <body>
 
-  <h1>استعلام عن الطلب</h1>
+<h1>استعلام عن الطلب</h1>
+<section style="margin-top: 40px; background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 6px 20px rgba(140,58,255,0.1);">
+  <h2 style="color: #3B0A77; text-align: center;">📚 خدمة طلابـي</h2>
+  <p style="line-height: 1.8; color: #444;">
+    خدمة <strong>طلابـي</strong> تتيح لك كطالب تتبع طلبك بكل سهولة وشفافية.
+    بعد إرسال طلبك، ستحصل على <strong>رقم تتبع خاص</strong>، يمكنك من خلاله:
+  </p>
+  <ul style="padding-right: 20px; color: #222;">
+    <li>🔍 الاستعلام عن حالة الطلب</li>
+    <li>⏳ معرفة الوقت المتبقي لإكمال المعالجة</li>
+    <li>📱 تلقي تنبيهات عند تحديث الحالة</li>
+  </ul>
+  <p style="margin-top: 20px; color: #3B0A77; font-weight: bold;">
+    كيف تستخدم الخدمة؟
+  </p>
+  <ol style="padding-right: 20px; color: #333;">
+    <li>أرسل طلبك من خلال النموذج أعلاه.</li>
+    <li>بعد الإرسال، سيظهر لك <strong>رقم تتبع الطلب</strong>.</li>
+    <li>اضغط على رابط <strong>"استعلام"</strong> الموجود بجانب الرقم، لمعرفة حالة الطلب.</li>
+  </ol>
+  <p style="margin-top: 20px; text-align: center;">
+    🚀 نسعى لتقديم أفضل تجربة طلابية في المملكة.
+  </p>
+</section>
 
-  <form id="trackForm" aria-label="نموذج استعلام">
+<!-- زر إبدأ الخدمة -->
+<button class="start-btn" onclick="
+  document.getElementById('trackingForm').style.display='block'; 
+  this.style.display='none'; 
+  document.querySelector('section').style.display='none';
+">ابدأ الخدمة</button>
+
+<!-- النموذج -->
+<div id="trackingForm" style="display:none;">
+  <form id="trackForm">
     <label for="trackName">الاسم:</label>
     <input type="text" id="trackName" placeholder="ادخل اسمك" required />
     <label for="trackPhone">رقم الجوال:</label>
@@ -87,82 +213,126 @@
   </form>
 
   <div id="trackResult" role="alert" aria-live="polite">
-    <div class="loader-container" id="loadingContainer">
+    <div class="loader-container" id="loadingContainer" style="display:none;">
       <div class="loader"></div>
       <div id="loadingText" style="margin-top: 5px;">⏳ جاري التحقق من البيانات المدخلة</div>
     </div>
     <div id="successTitle" class="success-title" style="display:none;">✅ تم الاستعلام بنجاح</div>
     <div id="resultText" style="display:none; white-space: pre-line;"></div>
-  </div>
 
-  <footer>
-    جميع الحقوق محفوظة &copy; 4STORE - <span dir="ltr">2025</span>
-  </footer>
+    <!-- الخط الزمني -->
+    <div id="progressTimeline" style="display:none;">
+      <div class="progress-container">
+        <div class="progress-line">
+          <div id="progressFill"></div>
+        </div>
+        <div class="step" id="step1">📦</div>
+        <div class="step" id="step2">📱</div>
+        <div class="step" id="step3">🚀</div>
+        <div class="step" id="step4">📮</div>
+      </div>
+      <div id="statusLabel"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  جميع الحقوق محفوظة &copy; 4STORE - <span dir="ltr">2025</span>
+</footer>
+
+
 
 <script>
+
   const trackForm = document.getElementById('trackForm');
   const trackResult = document.getElementById('trackResult');
   const loadingContainer = document.getElementById('loadingContainer');
   const loadingText = document.getElementById('loadingText');
   const successTitle = document.getElementById('successTitle');
   const resultText = document.getElementById('resultText');
-
-  let dotInterval;
+  const progressTimeline = document.getElementById('progressTimeline');
+  const statusLabel = document.getElementById('statusLabel');
 
   function startDotsAnimation() {
     let dots = 0;
-    dotInterval = setInterval(() => {
+    loadingContainer.style.display = 'flex';
+    return setInterval(() => {
       dots = (dots + 1) % 4;
       loadingText.textContent = '⏳ جاري التحقق من البيانات المدخلة' + '.'.repeat(dots);
     }, 500);
   }
 
-  function stopDotsAnimation() {
-    clearInterval(dotInterval);
+  function stopDotsAnimation(interval) {
+    clearInterval(interval);
+    loadingContainer.style.display = 'none';
   }
 
   trackForm.addEventListener('submit', e => {
     e.preventDefault();
-
     trackResult.style.display = 'block';
-    loadingContainer.style.display = 'flex';
     successTitle.style.display = 'none';
     resultText.style.display = 'none';
+    progressTimeline.style.display = 'none';
     trackResult.className = '';
-    startDotsAnimation();
 
-    const data = JSON.parse(localStorage.getItem("orderData") || "{}");
     const nameInput = document.getElementById('trackName').value.trim();
     const phoneInput = document.getElementById('trackPhone').value.trim();
     const codeInput = document.getElementById('trackCode').value.trim();
 
+    const storedData = JSON.parse(localStorage.getItem("orderData") || "{}");
+
+    const dotInterval = startDotsAnimation();
+
     setTimeout(() => {
-      stopDotsAnimation();
-      let message = "";
-      let statusClass = 'error';
+      stopDotsAnimation(dotInterval);
 
-      if (data.name === nameInput && data.phone === phoneInput && data.code === codeInput) {
-        const elapsed = Date.now() - data.timestamp;
-        let status = "📦 الطلب قيد المعالجة";
-        if (elapsed >= 4 * 3600000) status = "✅ تم إنهاء الطلب";
-        else if (elapsed >= 3 * 3600000) status = "📱 تم فتح الطلب";
-        else if (elapsed >= 2 * 3600000) status = "🚀 الطلب قيد التنفيذ";
-
-        message = `مرحباً: ${nameInput}،\n\nحالة طلبك : ${status}`;
-        statusClass = 'success';
+      if (storedData.name === nameInput && storedData.phone === phoneInput && storedData.code === codeInput) {
+        const elapsed = Date.now() - storedData.timestamp;
         successTitle.style.display = 'block';
-      } else {
-        message = "🚫 لا يوجد طلب مطابق للمعلومات المدخلة.";
-        successTitle.style.display = 'none';
-      }
+        resultText.style.display = 'block';
+        progressTimeline.style.display = 'block';
+        trackResult.className = 'success';
 
-      loadingContainer.style.display = 'none';
-      resultText.textContent = message;
-      resultText.style.display = 'block';
-      trackResult.className = statusClass;
-    }, 10000); //  
+        const steps = [
+          { id: "step1", time: 0, label: "📦 الطلب قيد المعالجة" },
+          { id: "step2", time: 2 * 3600000, label: "📱 تم فتح الطلب" },
+          { id: "step3", time: 3 * 3600000, label: "🚀 الطلب قيد التنفيذ" },
+          { id: "step4", time: 4 * 3600000, label: " طلبك معلق 📮 - تواصل مع الدعم الفني" }
+        ];
+
+        let latestStatus = steps[0].label;
+        steps.forEach((step, index) => {
+          const el = document.getElementById(step.id);
+          if (elapsed >= step.time) {
+            el.classList.add('active');
+            latestStatus = step.label;
+
+            // تحريك الخط حسب التقدم
+            document.getElementById("progressFill").style.width = ((index + 1) / steps.length * 100) + "%";
+          } else {
+            el.classList.remove('active');
+          }
+        });
+
+        resultText.textContent = `مرحباً: ${nameInput}،\n\nحالة طلبك: ${latestStatus}`;
+        statusLabel.textContent = latestStatus;
+
+      } else {
+        resultText.textContent = "🚫 لا يوجد طلب مطابق للمعلومات المدخلة.";
+        resultText.style.display = 'block';
+        trackResult.className = 'error';
+      }
+    }, 2000);
   });
+  
+  
 </script>
+
+
+
+</body>
+</html>
+
 
 </body>
 </html>
